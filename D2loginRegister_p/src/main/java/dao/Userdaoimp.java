@@ -1,0 +1,49 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import static utils.DBUtils.*;
+import pojos.User;
+
+public class Userdaoimp implements Userdao
+{
+	public Connection cn;
+	public PreparedStatement pst1;
+	
+	public Userdaoimp() throws SQLException
+	{
+		cn=openConnection();
+		pst1=cn.prepareStatement("Select * from users where email=? and password=?");
+		System.out.println("User dao created....");
+	}
+
+	@Override
+	public User authenticate(String email, String password) throws SQLException 
+	{
+		pst1.setString(1, email);
+		pst1.setString(2, password);
+		try(ResultSet rs=pst1.executeQuery())
+		{
+			if(rs.next())
+			{
+				return new User(rs.getInt(1),rs.getString(2),rs.getString(3), email, password,rs.getDate(6),rs.getBoolean(7),rs.getString(8));
+			}
+			return null;
+		}
+	
+	}
+	
+	public void cleanUp() throws SQLException
+	{
+		if(pst1!=null)
+		{
+          pst1.close();
+          closeConnection();
+          System.out.println("user dao cleanup......");
+		}
+	}
+
+}
