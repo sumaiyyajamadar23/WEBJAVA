@@ -30,6 +30,7 @@ try(PrintWriter pw=resp.getWriter())
     if(use==null)
     {
     	pw.print("<h4> Invalid Email or Password , Please <a href='login.html'>Retry</a></h4>");
+    	pw.print("<h4> Something wrong register again , Please <a href='register.html'>Retry</a></h4>");
     }
     else
     {

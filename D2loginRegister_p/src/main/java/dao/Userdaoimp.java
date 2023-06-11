@@ -11,12 +11,13 @@ import pojos.User;
 public class Userdaoimp implements Userdao
 {
 	public Connection cn;
-	public PreparedStatement pst1;
+	public PreparedStatement pst1,pst2;
 	
 	public Userdaoimp() throws SQLException
 	{
 		cn=openConnection();
 		pst1=cn.prepareStatement("Select * from users where email=? and password=?");
+		pst2=cn.prepareStatement("insert into users values(default,?,?,?,?,?,0,'voter')");
 		System.out.println("User dao created....");
 	}
 
@@ -44,6 +45,19 @@ public class Userdaoimp implements Userdao
           closeConnection();
           System.out.println("user dao cleanup......");
 		}
+	}
+
+	@Override
+	public int register(String first_name, String last_name, String email, String password, String dob) throws SQLException
+	{
+		pst2.setString(1, first_name);
+		pst2.setString(2, last_name);
+		pst2.setString(3, email);
+		pst2.setString(4, password);
+		pst2.setString(5, dob);
+		int res=pst2.executeUpdate();
+		
+		return res;
 	}
 
 }
