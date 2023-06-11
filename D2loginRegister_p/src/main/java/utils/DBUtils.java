@@ -9,8 +9,8 @@ public class DBUtils
 	public static Connection cn;
 public static Connection openConnection() throws SQLException
 {
-	String url="jdbc:mysql://localhost:3306/sumaiyya?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true";
-	cn=DriverManager.getConnection(url);
+	String url="jdbc:mysql://localhost:3306/advjava?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true";
+	cn=DriverManager.getConnection(url,"root","root123");
 	System.out.println("Connection Established......");
 	return cn;
 }
