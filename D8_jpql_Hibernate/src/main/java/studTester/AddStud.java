@@ -1,4 +1,4 @@
-package tester;
+package studTester;
 
 import org.hibernate.SessionFactory;
 import static utils.HibernateUtils.*;
