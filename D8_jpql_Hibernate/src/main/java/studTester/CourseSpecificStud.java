@@ -18,7 +18,7 @@ public class CourseSpecificStud {
 			{
 				StudentDaoImp dao=new StudentDaoImp();
 				System.out.println("Enter:Course name to see all students");
-				dao.getByCourse(sc.next()).forEach(System.out::println);
+				dao.getByCourse(Course.valueOf(sc.next())).forEach(System.out::println);
 
 			}
 			catch(Exception e)

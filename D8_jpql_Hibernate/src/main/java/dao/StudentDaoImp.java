@@ -1,5 +1,6 @@
 package dao;
 
+import pojos.Course;
 import pojos.Student;
 import static utils.HibernateUtils.*;
 
@@ -33,15 +34,28 @@ public class StudentDaoImp implements StudentDao {
 	}
 
 	@Override
-	public String loginStudent(String email, String password)
+	public Student loginStudent(String email, String pass)
 	{
-		String msg1="Login FAilde!!!!!!";
-		
-		return msg1;
+		Student std=null;
+		String jpql="select s from Student s where s.email=:em and s.password=:pass1";
+		Session sess=getFactory().getCurrentSession();
+		Transaction tx=sess.beginTransaction();
+		try
+		{
+		std=sess.createQuery(jpql,Student.class).setParameter("em",email).setParameter("pass1",pass).getSingleResult();
+		tx.commit();	
+		}
+		catch(RuntimeException r)
+		{
+			if(tx!=null)
+	        	tx.rollback();
+			throw r;
+		}
+		return std;
 	}
 
 	@Override
-	public List<Student> getByCourse(String coursetype) 
+	public List<Student> getByCourse(Course coursetype) 
 	{
 		List<Student> list=null;
 		String jpql="select s from Student s where s.course=: c";
@@ -64,6 +78,28 @@ public class StudentDaoImp implements StudentDao {
 		
 		return list;
 		
+	}
+
+	@Override
+	public String changeCourse(int id, Course course)
+	{
+		Student std=null;
+		String msg="invalid idDDDD!!!!!!!!!!!";
+		String jpql="select s from Student s where s.id=:i";
+		Session sess=getFactory().getCurrentSession();
+		Transaction tx=sess.beginTransaction();
+	try
+	{
+	     std=sess.createQuery(jpql,Student.class).setParameter("i",id).getSingleResult();
+	     std.setCourse(course);
+		tx.commit();
+		msg=" course Updatedddd!!!!!!!!!!!!!";
+	}
+	catch(RuntimeException e)
+	{
+	tx.rollback();	
+	}
+		return msg;
 	}
 
 }
