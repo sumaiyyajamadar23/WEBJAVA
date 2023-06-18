@@ -28,4 +28,5 @@ public interface EmployeeDao {
 		List<Employee> testConstructorExpression(EmploymentType empType);
 		//add a method to update emp salary
 		String updateEmpSalary(String email,String pwd,double salIncrement);
+		String deleteByType(EmploymentType em);
 }

@@ -225,5 +225,26 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		emp.setSalary(emp.getSalary() + salIncrement);
 		return mesg;
 	}
+	@Override
+	public String deleteByType(EmploymentType em) 
+	{
+	     String msg="FAilllll!!!!";
+	     String jpql="delete from Emploee e where e.type=:t";
+	     Session sess=getFactory().getCurrentSession();
+	     Transaction tx=sess.beginTransaction();
+	     try
+	     {
+	    	 int del=sess.createQuery(jpql)
+	    			 .setParameter("t", em)
+	    			 .executeUpdate();
+	    	 tx.commit();
+	    	 msg=del +" emps info deleted!";
+	     }
+	     catch(RuntimeException r)
+	     {
+	    	tx.rollback(); 
+	     }
+		return null;
+	}
 
 }
