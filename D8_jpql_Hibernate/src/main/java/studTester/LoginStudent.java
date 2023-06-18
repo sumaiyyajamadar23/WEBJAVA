@@ -19,6 +19,7 @@ public class LoginStudent
 		StudentDaoImp dao=new StudentDaoImp();
 		System.out.println("Enter:- email,password");
 	  System.out.println(dao.loginStudent(sc.next(), sc.next()));
+	  System.out.println("login sucessfully!!!!");
 	}
 	catch(Exception e)
 	{

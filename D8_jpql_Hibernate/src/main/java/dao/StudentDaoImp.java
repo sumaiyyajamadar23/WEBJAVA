@@ -49,6 +49,7 @@ public class StudentDaoImp implements StudentDao {
 		{
 			if(tx!=null)
 	        	tx.rollback();
+			//System.out.println("Invalid email or login!!!!!!!!!!!!!!!!!");
 			throw r;
 		}
 		return std;
