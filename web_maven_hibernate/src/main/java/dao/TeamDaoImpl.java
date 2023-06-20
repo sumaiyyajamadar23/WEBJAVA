@@ -47,4 +47,24 @@ public class TeamDaoImpl implements TeamDao {
 		return teams;
 	}
 
+	@Override
+	public Team getTeamDetails(Long teamid)
+	{
+		Session session = getFactory().getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		String msg = "team retrieved";
+		Team t=null;
+		try {
+              t=session.get(Team.class, teamid);
+			
+			tx.commit();
+			msg = "team added successfully";
+		} catch (RuntimeException e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
+		}
+		return t;
+	}
+
 }

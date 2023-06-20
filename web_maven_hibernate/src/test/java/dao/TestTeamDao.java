@@ -46,5 +46,12 @@ private static TeamDao dao;
 		team.forEach(e->System.out.println(e.getId()+""+e.getAbbrevation()));
 		assertEquals(5,team.size());
 	}
-
+@Test
+void GellAll()
+{
+	System.out.println("vcfgf");
+	Team t=dao.getTeamDetails(8L);
+	System.out.println(t);
+	assertEquals(8,t.getId());
+}
 }
