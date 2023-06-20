@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3> Welcome 2 Web App with Hibernate @ <%= new Date() %></h3>
+<h3> Welcome 1234 Web App with Hibernate @ <%= new Date() %></h3>
+<a href="add_player_form.jsp">Click</a>
 </body>
 </html>

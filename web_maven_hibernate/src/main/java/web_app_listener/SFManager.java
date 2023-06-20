@@ -16,7 +16,8 @@ public class SFManager implements ServletContextListener {
     /**
      * Default constructor. 
      */
-    public SFManager() {
+    public SFManager() 
+    {
         // TODO Auto-generated constructor stub
     }
 

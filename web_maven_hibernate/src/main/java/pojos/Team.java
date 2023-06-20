@@ -52,8 +52,9 @@ public class Team  extends BaseEntity{
 		this.players = players;
 	}
 
-	public Team( String abbrevation) {
-		super();
+	public Team( long id,String abbrevation) 
+	{
+		super.setId(id);
 		
 		this.abbrevation = abbrevation;
 	}
